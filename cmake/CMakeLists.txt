@@ -1,19 +1,20 @@
 # -----------------------------------------------------------------------------
 # CannonBall CMake setup
 #
-# For ports, please try not to edit this file directly.
+# For ports, please try not to edit this file directly. (Sorry.)
 # Everything should go into a win64.cmake equivalent.
 # -----------------------------------------------------------------------------
 
-cmake_minimum_required (VERSION 3.3.2) # Might compile lower, but untested
+cmake_minimum_required (VERSION 3.5) # Might compile lower, but untested
 project (cannonball)
+set (CMAKE_CXX_STANDARD 11)
 
 # -----------------------------------------------------------------------------
 # Directory Setup
 # -----------------------------------------------------------------------------
 
 # CMake default file (override with -DTARGET=file)
-set(DCMAKE win64-opengl.cmake)
+set(DCMAKE macos.cmake)
 
 # Source location
 set(main_cpp_base ../src/main)
@@ -246,6 +247,7 @@ endif()
 
 set(BOOST_INCLUDEDIR ${boost_dir})
 find_package(Boost REQUIRED)
+message("Boost Include : ${BOOST_INCLUDEDIR}")
 
 set(SDL2_DIR ${sdl2_dir})
 find_package(SDL2 REQUIRED)

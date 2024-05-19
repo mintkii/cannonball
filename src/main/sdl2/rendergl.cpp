@@ -113,7 +113,10 @@ bool Render::init(int src_width, int src_height,
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
 
     glcontext = SDL_GL_CreateContext(window);
-
+    if (!glcontext) {
+        std::cerr << "OpenGL context creation failed: " << SDL_GetError() << std::endl;
+        return false;
+    }
     if (!surface)
     {
         std::cerr << "Video mode set failed: " << SDL_GetError() << std::endl;
@@ -130,24 +133,24 @@ bool Render::init(int src_width, int src_height,
     Bshift = surface->format->Bshift;
 
     // This hack is necessary to fix an Apple OpenGL with SDL issue
-    #ifdef __APPLE__
-      #if SDL_BYTEORDER == SDL_LIL_ENDIAN
-        Rmask = 0x000000FF;
-        Gmask = 0x0000FF00;
-        Bmask = 0x00FF0000;
-        Rshift += 8;
-        Gshift -= 8;
-        Bshift += 8;
-      #else
-        Rmask = 0xFF000000;
-        Gmask = 0x00FF0000;
-        Bmask = 0x0000FF00;
-      #endif
-    #else
-        Rmask  = surface->format->Rmask;
-        Gmask  = surface->format->Gmask;
-        Bmask  = surface->format->Bmask;
-    #endif
+    // #ifdef __APPLE__
+    //   #if SDL_BYTEORDER == SDL_LIL_ENDIAN
+    //     Rmask = 0x000000FF;
+    //     Gmask = 0x0000FF00;
+    //     Bmask = 0x00FF0000;
+    //     Rshift += 8;
+    //     Gshift -= 8;
+    //     Bshift += 8;
+    //   #else
+    //     Rmask = 0xFF000000;
+    //     Gmask = 0x00FF0000;
+    //     Bmask = 0x0000FF00;
+    //   #endif
+    // #else
+    //     Rmask  = surface->format->Rmask;
+    //     Gmask  = surface->format->Gmask;
+    //     Bmask  = surface->format->Bmask;
+    // #endif
 
     // --------------------------------------------------------------------------------------------
     // Initalize Open GL
@@ -267,6 +270,7 @@ bool Render::finalize_frame()
 
 void Render::draw_frame(uint16_t* pixels)
 {
+    glClear(GL_COLOR_BUFFER_BIT);
     uint32_t* spix = screen_pixels;
 
     // Lookup real RGB value from rgb array for backbuffer
@@ -281,6 +285,10 @@ void Render::draw_frame(uint16_t* pixels)
             screen_pixels);                            // pointer in image memory
 
     glCallList(dlist);
+    GLenum error = glGetError();
+    if (error != GL_NO_ERROR) {
+        std::cerr << "OpenGL error: " << error << std::endl;
+    }
     //glFinish();
 
     SDL_GL_SwapWindow(window);
