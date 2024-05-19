@@ -99,6 +99,19 @@ emscripten/
 CMakeCache.txt
 CMakeFiles/
 
+#################
+## Xcode
+#################
+xcuserdata/
+.build/
+
+## Obj-C/Swift specific
+*.hmap
+
+## App packaging
+*.ipa
+*.dSYM.zip
+*.dSYM
 
 #################
 ## Eclipse
@@ -261,7 +274,28 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 
-# Mac crap
+#### Mac crap Deluxe TM
 .DS_Store
 old_version
+.AppleDouble
+.LSOverride
 
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+/.vscode
