@@ -44,11 +44,19 @@ Config config;
 Config::Config(void)
 {
     // Get config.xml location
-    // on macOS, the config.xml file is located in the Resources folder.
-    // TODO: Probably should be moved to Application Support,
-    // so that it can be retained between updates?
+    // on macOS, the config.xml file is located in the Application Support folder.
     #ifdef __APPLE__
-        std::string configPath = resourcePath + "/config.xml";
+        try {
+            // Check if the file exists in the destination folder
+            if (!std::filesystem::exists(applicationSupportPath + "/config.xml")) {
+                // If not, copy the file from the source to the destination
+                std::filesystem::copy(resourcePath + "/config.xml", applicationSupportPath + "/config.xml");
+                std::cout << "config.xml doesn't exist. Default file copied successfully.\n";
+            }
+        } catch (std::filesystem::filesystem_error& e) {
+            std::cout << "Error: " << e.what() << '\n';
+        }
+        std::string configPath = applicationSupportPath + "/config.xml";
     #else
         std::string configPath = "./config.xml";
     #endif

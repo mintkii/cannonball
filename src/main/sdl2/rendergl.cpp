@@ -103,7 +103,7 @@ bool Render::init(int src_width, int src_height,
     // scn_* values will be ignored if we pass any of the FULLSCREEN flags, as expected.
     // So these are here just for the windowed modes, and ignored otherwise.
     window = SDL_CreateWindow(
-        "Cannonball", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, scn_width, scn_height,
+        "CannonBall", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, scn_width, scn_height,
         flags);
 
     // This seems to be no longer necessary, and actively breaks the program
