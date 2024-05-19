@@ -192,4 +192,8 @@ public:
 private:
 };
 
+// macOS function declerations
+std::string getResourcePath();
+std::string getApplicationSupportPath();
+
 extern Config config;

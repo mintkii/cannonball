@@ -32,11 +32,27 @@ typedef boost::property_tree::xml_writer_settings<std::string> xml_writer_settin
 typedef boost::property_tree::xml_writer_settings<char> xml_writer_settings;
 #endif
 
+// macOS Semantics
+#ifdef __APPLE__
+#include <CoreFoundation/CoreFoundation.h>
+    std::string resourcePath = getResourcePath();
+    std::string applicationSupportPath = getApplicationSupportPath();
+#endif
+
 Config config;
 
 Config::Config(void)
 {
-    data.cfg_file = "./config.xml";
+    // Get config.xml location
+    // on macOS, the config.xml file is located in the Resources folder.
+    // TODO: Probably should be moved to Application Support,
+    // so that it can be retained between updates?
+    #ifdef __APPLE__
+        std::string configPath = resourcePath + "/config.xml";
+    #else
+        std::string configPath = "./config.xml";
+    #endif
+    data.cfg_file = configPath;
     
     // Setup default sounds
     music_t magical, breeze, splash;
@@ -87,9 +103,18 @@ void Config::load()
     // ------------------------------------------------------------------------
     // Data Settings
     // ------------------------------------------------------------------------
-    data.rom_path         = pt_config.get("data.rompath", "roms/");  // Path to ROMs
-    data.res_path         = pt_config.get("data.respath", "res/");   // Path to ROMs
-    data.save_path        = pt_config.get("data.savepath", "./");    // Path to Save Data
+    // On macOS, different values are used. 
+    // Eventually, I would like to let the user set these paths,
+    // but this will do for now.
+    #ifdef __APPLE__
+        data.rom_path         = resourcePath + "/roms/";  // Path to ROMs
+        data.res_path         = resourcePath +  "/res/";   // Path to ROMs
+        data.save_path        = applicationSupportPath + "/";    // Path to Save Data
+    #else
+        data.rom_path         = pt_config.get("data.rompath", "roms/");  // Path to ROMs
+        data.res_path         = pt_config.get("data.respath", "res/");   // Path to ROMs
+        data.save_path        = pt_config.get("data.savepath", "./");    // Path to Save Data
+    #endif
     data.crc32            = pt_config.get("data.crc32", 1);
 
     data.file_scores      = data.save_path + "hiscores.xml";
@@ -550,4 +575,35 @@ void Config::inc_traffic()
     }
     else
         engine.dip_traffic++;
+}
+
+
+
+// macOS Specific functions.
+std::string getResourcePath() {
+    CFBundleRef mainBundle = CFBundleGetMainBundle();
+    CFURLRef resourcesURL = CFBundleCopyResourcesDirectoryURL(mainBundle);
+    char path[PATH_MAX];
+    if (!CFURLGetFileSystemRepresentation(resourcesURL, TRUE, (UInt8 *)path, PATH_MAX))
+    {
+        // Error: Couldn't get resource path.
+    }
+    CFRelease(resourcesURL);
+    
+    return std::string(path);
+}
+
+std::string getApplicationSupportPath() {
+    const char* homeDir = std::getenv("HOME");
+    if (homeDir == nullptr) {
+        throw std::runtime_error("Error: HOME environment variable not set!");
+    }
+    std::string sPath = std::string(homeDir) + "/Library/Application Support/CannonBall";
+    
+    std::filesystem::path dir(sPath);
+    if (!std::filesystem::exists(dir)){
+        std::filesystem::create_directories(dir);
+    }
+
+    return sPath;
 }

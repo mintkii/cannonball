@@ -227,7 +227,27 @@ if(WIN32)
   set(SRCS ${SRCS} ../res/cannonball.rc)
 endif(WIN32)
 
-add_executable(cannonball ${SRCS})
+add_executable(cannonball MACOSX_BUNDLE ${SRCS})
+
+# Bundle Application for macOS
+if(APPLE)
+    install(TARGETS ${PROJECT_NAME}
+        BUNDLE DESTINATION . COMPONENT Runtime
+        RUNTIME DESTINATION bin COMPONENT Runtime
+    )
+    # Copy files to app bundle
+    install(FILES ../res/config.xml DESTINATION cannonball.app/Contents/Resources)
+    install(FILES ../res/tilemap.bin DESTINATION cannonball.app/Contents/Resources/res)
+    install(FILES ../res/tilepatch.bin DESTINATION cannonball.app/Contents/Resources/res)
+    install(FILES ../res/gamecontrollerdb.txt DESTINATION cannonball.app/Contents/Resources/res)
+    install(DIRECTORY ../roms/ DESTINATION cannonball.app/Contents/Resources/roms)
+
+    install(FILES ../docs/license.txt DESTINATION ./)
+
+    # Create package with CPack
+    set(CPACK_GENERATOR "DragNDrop")
+    include(CPack)
+endif(APPLE)
 
 # -----------------------------------------------------------------------------
 # Compiler Definitions
@@ -268,22 +288,4 @@ link_directories(
 target_link_libraries(cannonball
     ${SDL2_LIBRARIES}
     ${platform_link_libs}
-)
-
-# -----------------------------------------------------------------------------
-# Copy useful files to build destination
-# -----------------------------------------------------------------------------
-
-configure_file(../res/config.xml ./config.xml 
-    COPYONLY
-)
-
-configure_file(../res/tilemap.bin ./res/tilemap.bin
-    COPYONLY 
-)
-configure_file(../res/tilepatch.bin ./res/tilepatch.bin
-    COPYONLY 
-)
-configure_file(../res/gamecontrollerdb.txt ./res/gamecontrollerdb.txt
-    COPYONLY 
 )
