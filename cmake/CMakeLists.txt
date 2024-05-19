@@ -6,7 +6,7 @@
 # -----------------------------------------------------------------------------
 
 cmake_minimum_required (VERSION 3.5) # Might compile lower, but untested
-project (cannonball)
+project (CannonBall VERSION 1.0.0)
 set (CMAKE_CXX_STANDARD 17)
 
 # -----------------------------------------------------------------------------
@@ -227,10 +227,18 @@ if(WIN32)
   set(SRCS ${SRCS} ../res/cannonball.rc)
 endif(WIN32)
 
-add_executable(cannonball MACOSX_BUNDLE ${SRCS})
+add_executable(CannonBall MACOSX_BUNDLE ${SRCS})
 
 # Bundle Application for macOS
 if(APPLE)
+    # Set properties for the application bundle.
+    set(MACOSX_BUNDLE_ICON_FILE appicon.icns)
+    set(MACOSX_BUNDLE_INFO_STRING "CannonBall")
+    set(MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION})
+    set(MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION})
+    set(MACOSX_BUNDLE_GUI_IDENTIFIER "org.mintfresh.CannonBall")
+    set(MACOSX_BUNDLE_INFO_PLIST ../res/Info.plist.in)
+
     install(TARGETS ${PROJECT_NAME}
         BUNDLE DESTINATION . COMPONENT Runtime
         RUNTIME DESTINATION bin COMPONENT Runtime
@@ -243,6 +251,9 @@ if(APPLE)
     install(DIRECTORY ../roms/ DESTINATION cannonball.app/Contents/Resources/roms)
 
     install(FILES ../docs/license.txt DESTINATION ./)
+    install(FILES ../README.md DESTINATION ./)
+
+    install(FILES ../res/appicon.icns DESTINATION cannonball.app/Contents/Resources)
 
     # Create package with CPack
     set(CPACK_GENERATOR "DragNDrop")
@@ -285,7 +296,7 @@ link_directories(
     ${platform_link_dirs}
 )
 
-target_link_libraries(cannonball
+target_link_libraries(CannonBall
     ${SDL2_LIBRARIES}
     ${platform_link_libs}
 )
