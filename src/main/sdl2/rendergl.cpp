@@ -98,7 +98,7 @@ bool Render::init(int src_width, int src_height,
 	    return false;
     }
 
-    SDL_ShowCursor(SDL_DISABLE);
+    // SDL_ShowCursor(SDL_DISABLE);
     
     // scn_* values will be ignored if we pass any of the FULLSCREEN flags, as expected.
     // So these are here just for the windowed modes, and ignored otherwise.
@@ -106,17 +106,19 @@ bool Render::init(int src_width, int src_height,
         "Cannonball", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, scn_width, scn_height,
         flags);
 
-    // I don't know if there are platforms where ES is the default profile, so just in case
-    // I force a GL2 core profile here (deprecated functions disabled for good).
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+    // This seems to be no longer necessary, and actively breaks the program
+    // on macOS. I'm leaving it here for reference.
+    // SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+    // SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+    // SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
 
     glcontext = SDL_GL_CreateContext(window);
+
     if (!glcontext) {
         std::cerr << "OpenGL context creation failed: " << SDL_GetError() << std::endl;
         return false;
     }
+
     if (!surface)
     {
         std::cerr << "Video mode set failed: " << SDL_GetError() << std::endl;
@@ -132,7 +134,8 @@ bool Render::init(int src_width, int src_height,
     Gshift = surface->format->Gshift;
     Bshift = surface->format->Bshift;
 
-    // This hack is necessary to fix an Apple OpenGL with SDL issue
+    // This hack USED to be necessary to fix an Apple OpenGL with SDL issue.
+    // it seems to be fixed now, but I'll leave it here for reference.
     // #ifdef __APPLE__
     //   #if SDL_BYTEORDER == SDL_LIL_ENDIAN
     //     Rmask = 0x000000FF;
@@ -270,7 +273,6 @@ bool Render::finalize_frame()
 
 void Render::draw_frame(uint16_t* pixels)
 {
-    glClear(GL_COLOR_BUFFER_BIT);
     uint32_t* spix = screen_pixels;
 
     // Lookup real RGB value from rgb array for backbuffer
@@ -285,10 +287,6 @@ void Render::draw_frame(uint16_t* pixels)
             screen_pixels);                            // pointer in image memory
 
     glCallList(dlist);
-    GLenum error = glGetError();
-    if (error != GL_NO_ERROR) {
-        std::cerr << "OpenGL error: " << error << std::endl;
-    }
     //glFinish();
 
     SDL_GL_SwapWindow(window);
