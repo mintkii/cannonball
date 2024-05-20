@@ -77,7 +77,7 @@ void Menu::populate()
     menu_musictest.push_back(ENTRY_MUSIC2);
     menu_musictest.push_back(ENTRY_BACK);
 
-    menu_about.push_back("CANNONBALL 0.35 © CHRIS WHITE 2022");
+    menu_about.push_back("CANNONBALL 0.35 ï¿½ CHRIS WHITE 2022");
     menu_about.push_back("REASSEMBLER.BLOGSPOT.COM");
     menu_about.push_back(" ");
     menu_about.push_back("CANNONBALL IS FREE AND MAY NOT BE SOLD.");
@@ -1053,6 +1053,29 @@ void Menu::display_message(std::string s)
     msg = s;
     message_counter = MESSAGE_TIME * config.fps;
 }
+
+
+// TODO: probably can be done better
+// Show native system alert boxes.
+void Menu::showAlert(const char* title, const char* message) {
+    SDL_MessageBoxButtonData buttons[] = {
+        { SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT, 0, "OK" },
+    };
+
+    SDL_MessageBoxData messageboxdata = {
+        SDL_MESSAGEBOX_INFORMATION,
+        NULL, // no window
+        title,
+        message,
+        SDL_arraysize(buttons),
+        buttons,
+        NULL // no color scheme
+    };
+
+    int buttonid;
+    SDL_ShowMessageBox(&messageboxdata, &buttonid);
+}
+
 
 bool Menu::check_jap_roms()
 {

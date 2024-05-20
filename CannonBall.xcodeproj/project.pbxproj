@@ -59,10 +59,10 @@
 		2B88FB662BFB0BF2001DBF22 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B88FB652BFB0BF2001DBF22 /* OpenGL.framework */; };
 		2B88FB682BFB10ED001DBF22 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B88FB672BFB10ED001DBF22 /* SDL2.framework */; };
 		2B88FB692BFB10ED001DBF22 /* SDL2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2B88FB672BFB10ED001DBF22 /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2B88FB6C2BFB1108001DBF22 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B88FB6B2BFB1108001DBF22 /* Foundation.framework */; };
 		2B88FB712BFB136B001DBF22 /* roms in Resources */ = {isa = PBXBuildFile; fileRef = 2B88FB6F2BFB136B001DBF22 /* roms */; };
 		2B88FB762BFB17CC001DBF22 /* res in Resources */ = {isa = PBXBuildFile; fileRef = 2B88FB6E2BFB136B001DBF22 /* res */; };
 		2B88FB992BFB1D98001DBF22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B88FB852BFB1D98001DBF22 /* Assets.xcassets */; };
+		2B9DAC642BFBCCDA000F7EC3 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9DAC5E2BFBCB36000F7EC3 /* CoreFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -81,9 +81,6 @@
 
 /* Begin PBXFileReference section */
 		2B423FF52BFB09FB00DEA601 /* CannonBall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CannonBall.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B88FA3C2BFB0A68001DBF22 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
-		2B88FA3D2BFB0A68001DBF22 /* macos.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = macos.cmake; sourceTree = "<group>"; };
-		2B88FA3E2BFB0A68001DBF22 /* toolchain.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = toolchain.cmake; sourceTree = "<group>"; };
 		2B88FA432BFB0A68001DBF22 /* cannonball.6 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cannonball.6; sourceTree = "<group>"; };
 		2B88FA442BFB0A68001DBF22 /* license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license.txt; sourceTree = "<group>"; };
 		2B88FA462BFB0A68001DBF22 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -222,6 +219,9 @@
 		2B88FB882BFB1D98001DBF22 /* cannonball.rc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cannonball.rc; sourceTree = "<group>"; };
 		2B88FB892BFB1D98001DBF22 /* cannonball2.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = cannonball2.ico; sourceTree = "<group>"; };
 		2B88FB8A2BFB1D98001DBF22 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		2B9DAC5E2BFBCB36000F7EC3 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		2B9DAC602BFBCB3F000F7EC3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		2B9DAC622BFBCC22000F7EC3 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,8 +229,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B9DAC642BFBCCDA000F7EC3 /* CoreFoundation.framework in Frameworks */,
 				2B88FB662BFB0BF2001DBF22 /* OpenGL.framework in Frameworks */,
-				2B88FB6C2BFB1108001DBF22 /* Foundation.framework in Frameworks */,
 				2B88FB682BFB10ED001DBF22 /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -247,7 +247,6 @@
 				2B88FB6E2BFB136B001DBF22 /* res */,
 				2B88FB6F2BFB136B001DBF22 /* roms */,
 				2B88FB8B2BFB1D98001DBF22 /* ext */,
-				2B88FA3F2BFB0A68001DBF22 /* cmake */,
 				2B423FF62BFB09FB00DEA601 /* Products */,
 				2B88FB642BFB0BF2001DBF22 /* Frameworks */,
 			);
@@ -259,16 +258,6 @@
 				2B423FF52BFB09FB00DEA601 /* CannonBall.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		2B88FA3F2BFB0A68001DBF22 /* cmake */ = {
-			isa = PBXGroup;
-			children = (
-				2B88FA3C2BFB0A68001DBF22 /* CMakeLists.txt */,
-				2B88FA3D2BFB0A68001DBF22 /* macos.cmake */,
-				2B88FA3E2BFB0A68001DBF22 /* toolchain.cmake */,
-			);
-			path = cmake;
 			sourceTree = "<group>";
 		};
 		2B88FA452BFB0A68001DBF22 /* docs */ = {
@@ -473,6 +462,9 @@
 		2B88FB642BFB0BF2001DBF22 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2B9DAC622BFBCC22000F7EC3 /* AppKit.framework */,
+				2B9DAC602BFBCB3F000F7EC3 /* Cocoa.framework */,
+				2B9DAC5E2BFBCB36000F7EC3 /* CoreFoundation.framework */,
 				2B88FB6B2BFB1108001DBF22 /* Foundation.framework */,
 				2B88FB672BFB10ED001DBF22 /* SDL2.framework */,
 				2B88FB652BFB0BF2001DBF22 /* OpenGL.framework */,
@@ -546,6 +538,7 @@
 				TargetAttributes = {
 					2B423FF42BFB09FB00DEA601 = {
 						CreatedOnToolsVersion = 15.4;
+						LastSwiftMigration = 1540;
 					};
 				};
 			};
@@ -760,6 +753,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ext/capabilities.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
@@ -787,6 +781,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.mintfresh.CannonBall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "src/bento/CannonBall-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -795,6 +792,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ext/capabilities.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
@@ -822,6 +820,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.mintfresh.CannonBall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "src/bento/CannonBall-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

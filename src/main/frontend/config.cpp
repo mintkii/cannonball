@@ -18,6 +18,7 @@
 #include "main.hpp"
 #include "config.hpp"
 #include "globals.hpp"
+#include "menu.hpp"
 #include "../utils.hpp"
 
 #include "engine/ohiscore.hpp"
@@ -57,10 +58,15 @@ Config::Config(void)
     data.cfg_file = applicationSupportPath + "/config.xml";
     
     // ROM folder Setup
+    // TODO: this is done terribly.
+    // It only works once because of how it just is.
     try {
         if (!std::filesystem::exists(applicationSupportPath + "/roms")) {
             std::filesystem::copy(resourcePath + "/roms", applicationSupportPath + "/roms");
             std::cout << "ROM folder doesn't exist. Defaults copied successfully. I will die now.\n";
+            Menu().showAlert("Missing Game Data", "Check CannonBall's Application Support directory, and verify all required ROM files are present.\n\nThe game will close now.");
+            exit(0);
+            
         }
     } catch (std::filesystem::filesystem_error& e) {
         std::cout << "Error: " << e.what() << '\n';
@@ -365,7 +371,7 @@ bool Config::save()
 
     pt_config.put("time_trial.laps",    ttrial.laps);
     pt_config.put("time_trial.traffic", ttrial.traffic);
-    pt_config.put("continuous.traffic", cont_traffic), 
+    pt_config.put("continuous.traffic", cont_traffic);
 
     ttrial.laps    = pt_config.get("time_trial.laps",    5);
     ttrial.traffic = pt_config.get("time_trial.traffic", 3);
