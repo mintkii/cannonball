@@ -8,22 +8,27 @@ For an overview of CannonBall and its features, please read the original [manual
 CannonBall is written by Chris White ([Blog](http://reassembler.blogspot.co.uk/), [Twitter](https://twitter.com/djyt)). 
 
 
-Getting Started
+Installation
+---------------
+
+This port requires macOS 10.15
+
+Download the latest release from GitHub. 
+Copy the CannonBall application off the .dmg into somewhere else.
+You will **need** to provide your own OutRun game data:
+* On CannonBall.app, open the Context Menu > [Show Package Contents]
+* Navigate to Contents/Resources/roms
+* Insert game data into the folder, following the instructions in roms.txt
+
+Development
 ---------------
 
 CannonBall is coded in C++ and makes use of the SDL 2 and Boost libraries. 
 **Do not use this fork to port to other platforms.** Please use the original repository instead. 
 
-* Install your favourite C++ environment.
-* Install [CMake](http://www.cmake.org/). Verify that CPack is also installed with it.
+* Install Xcode.
 * Install the [Boost Library](http://www.boost.org/) with Homebrew, or any other method.
 * Install the [SDL Development Library](https://www.libsdl.org/download-2.0.php) with Homebrew, or any other method.
 * Extract the CannonBall code somewhere.
-* Check the macos.cmake file, and make modifications if necessary.
-
-Build
------
-
-* Run CMake to generate the relevant build files for your compiler. You can optionally pass -DTARGET=filename to pass a custom .cmake file.
-* Compile
-* Run CPack to create a full, usable .dmg file.
+* Launch the .xcodeproj, add necessary frameworks to the project.
+* Build.
