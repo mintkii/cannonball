@@ -41,7 +41,7 @@ Config config;
 
 Config::Config(void)
 {
-    // Get config.xml location
+    // config.xml Setup
     // on macOS, the config.xml file is located in the Application Support folder.
     // If it doesn't exist, it should be copied from the app bundle.
     try {
@@ -55,6 +55,16 @@ Config::Config(void)
         std::cout << "Error: " << e.what() << '\n';
     }
     data.cfg_file = applicationSupportPath + "/config.xml";
+    
+    // ROM folder Setup
+    try {
+        if (!std::filesystem::exists(applicationSupportPath + "/roms")) {
+            std::filesystem::copy(resourcePath + "/roms", applicationSupportPath + "/roms");
+            std::cout << "ROM folder doesn't exist. Defaults copied successfully. I will die now.\n";
+        }
+    } catch (std::filesystem::filesystem_error& e) {
+        std::cout << "Error: " << e.what() << '\n';
+    }
     
     // Setup default sounds
     music_t magical, breeze, splash;
@@ -105,18 +115,12 @@ void Config::load()
     // ------------------------------------------------------------------------
     // Data Settings
     // ------------------------------------------------------------------------
-    // On macOS, different values are used. 
+    // config.xml does not effect these paths yet.
     // Eventually, I would like to let the user set these paths,
     // but this will do for now.
-    #ifdef __APPLE__
-        data.rom_path         = resourcePath + "/roms/";  // Path to ROMs
-        data.res_path         = resourcePath +  "/res/";   // Path to ROMs
-        data.save_path        = applicationSupportPath + "/";    // Path to Save Data
-    #else
-        data.rom_path         = pt_config.get("data.rompath", "roms/");  // Path to ROMs
-        data.res_path         = pt_config.get("data.respath", "res/");   // Path to ROMs
-        data.save_path        = pt_config.get("data.savepath", "./");    // Path to Save Data
-    #endif
+    data.rom_path         = applicationSupportPath + "/roms/";  // Path to ROMs
+    data.res_path         = resourcePath +  "/res/";            // Path to Resources
+    data.save_path        = applicationSupportPath + "/";       // Path to Save Data
     data.crc32            = pt_config.get("data.crc32", 1);
 
     data.file_scores      = data.save_path + "hiscores.xml";
