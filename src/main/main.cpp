@@ -9,7 +9,7 @@
 #include <iostream>
 
 // SDL Library
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 // SDL Specific Code
 #include "sdl2/timer.hpp"

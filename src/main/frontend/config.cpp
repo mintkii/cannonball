@@ -33,11 +33,9 @@ typedef boost::property_tree::xml_writer_settings<char> xml_writer_settings;
 #endif
 
 // macOS Semantics
-#ifdef __APPLE__
 #include <CoreFoundation/CoreFoundation.h>
-    std::string resourcePath = getResourcePath();
-    std::string applicationSupportPath = getApplicationSupportPath();
-#endif
+std::string resourcePath = getResourcePath();
+std::string applicationSupportPath = getApplicationSupportPath();
 
 Config config;
 
@@ -45,22 +43,18 @@ Config::Config(void)
 {
     // Get config.xml location
     // on macOS, the config.xml file is located in the Application Support folder.
-    #ifdef __APPLE__
-        try {
-            // Check if the file exists in the destination folder
-            if (!std::filesystem::exists(applicationSupportPath + "/config.xml")) {
-                // If not, copy the file from the source to the destination
-                std::filesystem::copy(resourcePath + "/config.xml", applicationSupportPath + "/config.xml");
-                std::cout << "config.xml doesn't exist. Default file copied successfully.\n";
-            }
-        } catch (std::filesystem::filesystem_error& e) {
-            std::cout << "Error: " << e.what() << '\n';
+    // If it doesn't exist, it should be copied from the app bundle.
+    try {
+        // Check if the file exists in the destination folder
+        if (!std::filesystem::exists(applicationSupportPath + "/config.xml")) {
+            // If not, copy the file from the source to the destination
+            std::filesystem::copy(resourcePath + "/res/config.xml", applicationSupportPath + "/config.xml");
+            std::cout << "config.xml doesn't exist. Default file copied successfully.\n";
         }
-        std::string configPath = applicationSupportPath + "/config.xml";
-    #else
-        std::string configPath = "./config.xml";
-    #endif
-    data.cfg_file = configPath;
+    } catch (std::filesystem::filesystem_error& e) {
+        std::cout << "Error: " << e.what() << '\n';
+    }
+    data.cfg_file = applicationSupportPath + "/config.xml";
     
     // Setup default sounds
     music_t magical, breeze, splash;

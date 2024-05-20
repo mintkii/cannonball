@@ -16,7 +16,7 @@
 
 #include <iostream>
 #include <cstring>
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 #include "sdl2/audio.hpp"
 #include "frontend/config.hpp" // fps

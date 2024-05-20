@@ -98,7 +98,7 @@ bool Render::init(int src_width, int src_height,
 	    return false;
     }
 
-    // SDL_ShowCursor(SDL_DISABLE);
+    SDL_ShowCursor(SDL_DISABLE);
     
     // scn_* values will be ignored if we pass any of the FULLSCREEN flags, as expected.
     // So these are here just for the windowed modes, and ignored otherwise.

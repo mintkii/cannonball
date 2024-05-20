@@ -3,7 +3,7 @@
 #include "../stdint.hpp"
 #include "../globals.hpp"
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 // Abstract Rendering Class
 class RenderBase
