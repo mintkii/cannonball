@@ -29,26 +29,27 @@ bool RenderBase::sdl_screen_size()
     return true;
 }
 
-// See: SDL_PixelFormat
-#define CURRENT_RGB() (r << Rshift) | (g << Gshift) | (b << Bshift);
-
 void RenderBase::convert_palette(uint32_t adr, uint32_t r1, uint32_t g1, uint32_t b1)
 {
     adr >>= 1;
 
+    // The Rshift, Gshift, and Bshift variables are no longer valid in the Metal
+    // renderer. Should construct the color in a fixed 0xRRGGBB format.
     uint32_t r = r1 * 8;
     uint32_t g = g1 * 8;
     uint32_t b = b1 * 8;
 
-    rgb[adr] = CURRENT_RGB();
+    // Directly create a 24-bit RGB color in 0x00RRGGBB format.
+    rgb[adr] = (r << 16) | (g << 8) | b;
 
     // Create shadow colours at end of RGB array
     r = r1 * shadow_multi / 31;
     g = g1 * shadow_multi / 31;
     b = b1 * shadow_multi / 31;
         
-    rgb[adr + S16_PALETTE_ENTRIES] = CURRENT_RGB(); // Add to the end of the array
-
+    // Same deal.
+    rgb[adr + S16_PALETTE_ENTRIES] = (r << 16) | (g << 8) | b;
+    
     // Highlight colour code would be added here, but unused.
 }
 

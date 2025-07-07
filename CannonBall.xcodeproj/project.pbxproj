@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B1047082E1C7C6200EFF8D9 /* rendermtl.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2B1047072E1C7C5D00EFF8D9 /* rendermtl.mm */; };
+		2B1047092E1C7DA700EFF8D9 /* rendermtl.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B1047062E1C7C3400EFF8D9 /* rendermtl.hpp */; };
+		2B46D9AA2E0E1F3200F259EF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B46D9A92E0E1F3200F259EF /* QuartzCore.framework */; };
+		2B46D9AC2E0E1F3A00F259EF /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B46D9AB2E0E1F3A00F259EF /* Metal.framework */; };
 		2B88FAFC2BFB0A68001DBF22 /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2B88FA442BFB0A68001DBF22 /* license.txt */; };
 		2B88FB272BFB0A68001DBF22 /* ffeedback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B88FA722BFB0A68001DBF22 /* ffeedback.cpp */; };
 		2B88FB282BFB0A68001DBF22 /* osound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B88FA762BFB0A68001DBF22 /* osound.cpp */; };
@@ -48,7 +52,6 @@
 		2B88FB4C2BFB0A68001DBF22 /* audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B88FACB2BFB0A68001DBF22 /* audio.cpp */; };
 		2B88FB4D2BFB0A68001DBF22 /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B88FACD2BFB0A68001DBF22 /* input.cpp */; };
 		2B88FB4E2BFB0A68001DBF22 /* renderbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B88FACF2BFB0A68001DBF22 /* renderbase.cpp */; };
-		2B88FB4F2BFB0A68001DBF22 /* rendergl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B88FAD12BFB0A68001DBF22 /* rendergl.cpp */; };
 		2B88FB522BFB0A68001DBF22 /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B88FAD72BFB0A68001DBF22 /* timer.cpp */; };
 		2B88FB532BFB0A68001DBF22 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B88FADB2BFB0A68001DBF22 /* main.cpp */; };
 		2B88FB542BFB0A68001DBF22 /* romloader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B88FADD2BFB0A68001DBF22 /* romloader.cpp */; };
@@ -56,7 +59,6 @@
 		2B88FB562BFB0A68001DBF22 /* trackloader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B88FAE22BFB0A68001DBF22 /* trackloader.cpp */; };
 		2B88FB572BFB0A68001DBF22 /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B88FAE42BFB0A68001DBF22 /* utils.cpp */; };
 		2B88FB582BFB0A68001DBF22 /* video.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B88FAE62BFB0A68001DBF22 /* video.cpp */; };
-		2B88FB662BFB0BF2001DBF22 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B88FB652BFB0BF2001DBF22 /* OpenGL.framework */; };
 		2B88FB682BFB10ED001DBF22 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B88FB672BFB10ED001DBF22 /* SDL2.framework */; };
 		2B88FB692BFB10ED001DBF22 /* SDL2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2B88FB672BFB10ED001DBF22 /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2B88FB712BFB136B001DBF22 /* roms in Resources */ = {isa = PBXBuildFile; fileRef = 2B88FB6F2BFB136B001DBF22 /* roms */; };
@@ -80,7 +82,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2B1047062E1C7C3400EFF8D9 /* rendermtl.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = rendermtl.hpp; sourceTree = "<group>"; };
+		2B1047072E1C7C5D00EFF8D9 /* rendermtl.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = rendermtl.mm; sourceTree = "<group>"; };
 		2B423FF52BFB09FB00DEA601 /* CannonBall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CannonBall.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B46D9A92E0E1F3200F259EF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		2B46D9AB2E0E1F3A00F259EF /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		2B88FA432BFB0A68001DBF22 /* cannonball.6 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cannonball.6; sourceTree = "<group>"; };
 		2B88FA442BFB0A68001DBF22 /* license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license.txt; sourceTree = "<group>"; };
 		2B88FA462BFB0A68001DBF22 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -214,7 +220,6 @@
 		2B88FB822BFB1D98001DBF22 /* icon_1024@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_1024@2x.png"; sourceTree = "<group>"; };
 		2B88FB842BFB1D98001DBF22 /* appicon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = appicon.icns; sourceTree = "<group>"; };
 		2B88FB852BFB1D98001DBF22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2B88FB862BFB1D98001DBF22 /* capabilities.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = capabilities.entitlements; sourceTree = "<group>"; };
 		2B88FB872BFB1D98001DBF22 /* cannonball.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = cannonball.ico; sourceTree = "<group>"; };
 		2B88FB882BFB1D98001DBF22 /* cannonball.rc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cannonball.rc; sourceTree = "<group>"; };
 		2B88FB892BFB1D98001DBF22 /* cannonball2.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = cannonball2.ico; sourceTree = "<group>"; };
@@ -230,7 +235,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B9DAC642BFBCCDA000F7EC3 /* CoreFoundation.framework in Frameworks */,
-				2B88FB662BFB0BF2001DBF22 /* OpenGL.framework in Frameworks */,
+				2B46D9AA2E0E1F3200F259EF /* QuartzCore.framework in Frameworks */,
+				2B46D9AC2E0E1F3A00F259EF /* Metal.framework in Frameworks */,
 				2B88FB682BFB10ED001DBF22 /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,6 +417,8 @@
 				2B88FACE2BFB0A68001DBF22 /* input.hpp */,
 				2B88FACF2BFB0A68001DBF22 /* renderbase.cpp */,
 				2B88FAD02BFB0A68001DBF22 /* renderbase.hpp */,
+				2B1047072E1C7C5D00EFF8D9 /* rendermtl.mm */,
+				2B1047062E1C7C3400EFF8D9 /* rendermtl.hpp */,
 				2B88FAD12BFB0A68001DBF22 /* rendergl.cpp */,
 				2B88FAD22BFB0A68001DBF22 /* rendergl.hpp */,
 				2B88FAD32BFB0A68001DBF22 /* rendergles.cpp */,
@@ -462,6 +470,8 @@
 		2B88FB642BFB0BF2001DBF22 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2B46D9AB2E0E1F3A00F259EF /* Metal.framework */,
+				2B46D9A92E0E1F3200F259EF /* QuartzCore.framework */,
 				2B9DAC622BFBCC22000F7EC3 /* AppKit.framework */,
 				2B9DAC602BFBCB3F000F7EC3 /* Cocoa.framework */,
 				2B9DAC5E2BFBCB36000F7EC3 /* CoreFoundation.framework */,
@@ -497,7 +507,6 @@
 				2B88FB832BFB1D98001DBF22 /* IconAssets */,
 				2B88FB842BFB1D98001DBF22 /* appicon.icns */,
 				2B88FB852BFB1D98001DBF22 /* Assets.xcassets */,
-				2B88FB862BFB1D98001DBF22 /* capabilities.entitlements */,
 				2B88FB872BFB1D98001DBF22 /* cannonball.ico */,
 				2B88FB882BFB1D98001DBF22 /* cannonball.rc */,
 				2B88FB892BFB1D98001DBF22 /* cannonball2.ico */,
@@ -534,7 +543,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					2B423FF42BFB09FB00DEA601 = {
 						CreatedOnToolsVersion = 15.4;
@@ -579,9 +588,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B1047092E1C7DA700EFF8D9 /* rendermtl.hpp in Sources */,
 				2B88FB292BFB0A68001DBF22 /* osoundint.cpp in Sources */,
 				2B88FB582BFB0A68001DBF22 /* video.cpp in Sources */,
-				2B88FB4F2BFB0A68001DBF22 /* rendergl.cpp in Sources */,
 				2B88FB3A2BFB0A68001DBF22 /* osmoke.cpp in Sources */,
 				2B88FB522BFB0A68001DBF22 /* timer.cpp in Sources */,
 				2B88FB432BFB0A68001DBF22 /* config.cpp in Sources */,
@@ -624,6 +633,7 @@
 				2B88FB462BFB0A68001DBF22 /* segapcm.cpp in Sources */,
 				2B88FB392BFB0A68001DBF22 /* oroad.cpp in Sources */,
 				2B88FB332BFB0A68001DBF22 /* olevelobjs.cpp in Sources */,
+				2B1047082E1C7C6200EFF8D9 /* rendermtl.mm in Sources */,
 				2B88FB492BFB0A68001DBF22 /* hwroad.cpp in Sources */,
 				2B88FB2E2BFB0A68001DBF22 /* oferrari.cpp in Sources */,
 				2B88FB472BFB0A68001DBF22 /* soundchip.cpp in Sources */,
@@ -667,6 +677,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -691,6 +702,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 			};
 			name = Debug;
 		};
@@ -728,6 +740,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -745,6 +758,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 			};
 			name = Release;
 		};
@@ -754,11 +768,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ext/capabilities.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_APP_SANDBOX = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",
@@ -793,11 +809,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ext/capabilities.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_APP_SANDBOX = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",
