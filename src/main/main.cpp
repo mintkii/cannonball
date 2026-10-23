@@ -5,6 +5,7 @@
     See license.txt for more details.
 ***************************************************************************/
 
+#include <cstdlib>
 #include <cstring>
 #include <iostream>
 
@@ -215,7 +216,10 @@ static void main_loop()
     fps_count.start();
 
     // General Frame Timing
-    bool vsync = config.video.vsync == 1 && video.supports_vsync();
+    // Only let V-Sync pace the game when the refresh rate matches the game's frame rate
+    SDL_DisplayMode mode;
+    bool vsync = config.video.vsync == 1 && video.supports_vsync() &&
+                 SDL_GetCurrentDisplayMode(0, &mode) == 0 && std::abs(mode.refresh_rate - config.fps) <= 1;
     Timer frame_time;
     int t;                              // Actual timing of tick in ms as measured by SDL (ms)
     double deltatime  = 0;              // Time we want an entire frame to take (ms)

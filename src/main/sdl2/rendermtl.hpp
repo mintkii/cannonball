@@ -9,11 +9,8 @@
 #include "renderbase.hpp"
 #include <SDL2/SDL.h>
 
-#ifdef __OBJC__
-@protocol MTLDevice, MTLCommandQueue, MTLRenderPipelineState, MTLBuffer, MTLTexture;
-#else
-typedef void* id;
-#endif
+// Defined in rendermtl.mm
+struct MetalState;
 
 class Render : public RenderBase
 {
@@ -33,19 +30,12 @@ public:
 private:
     bool init_metal();
     bool create_pipeline_state();
+    bool create_samplers();
     bool create_textures();
 
-    SDL_Window* window;
-    void* native_window;
-
-    // Metal Objects
-    id<MTLDevice>               mtl_device;
-    id<MTLCommandQueue>         mtl_queue;
-    id<MTLRenderPipelineState>  mtl_pipeline_state;
-    id<MTLTexture>              mtl_screen_texture;
-    id<MTLTexture>              mtl_scanline_texture;
+    SDL_Window*  window;
+    SDL_MetalView metal_view;
+    MetalState*  mtl;
 
     float scanline_alpha;
-
-    bool enable_scanlines;
 };

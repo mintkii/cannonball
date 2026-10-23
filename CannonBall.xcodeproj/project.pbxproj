@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2B1047082E1C7C6200EFF8D9 /* rendermtl.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2B1047072E1C7C5D00EFF8D9 /* rendermtl.mm */; };
-		2B1047092E1C7DA700EFF8D9 /* rendermtl.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B1047062E1C7C3400EFF8D9 /* rendermtl.hpp */; };
 		2B46D9AA2E0E1F3200F259EF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B46D9A92E0E1F3200F259EF /* QuartzCore.framework */; };
 		2B46D9AC2E0E1F3A00F259EF /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B46D9AB2E0E1F3A00F259EF /* Metal.framework */; };
 		2B88FAFC2BFB0A68001DBF22 /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2B88FA442BFB0A68001DBF22 /* license.txt */; };
@@ -588,7 +587,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B1047092E1C7DA700EFF8D9 /* rendermtl.hpp in Sources */,
 				2B88FB292BFB0A68001DBF22 /* osoundint.cpp in Sources */,
 				2B88FB582BFB0A68001DBF22 /* video.cpp in Sources */,
 				2B88FB3A2BFB0A68001DBF22 /* osmoke.cpp in Sources */,
@@ -782,7 +780,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/**",
-					/opt/homebrew/include,
+					/opt/local/include,
 				);
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -793,6 +791,10 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"WITH_METAL=1",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.mintfresh.CannonBall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -823,7 +825,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/**",
-					/opt/homebrew/include,
+					/opt/local/include,
 				);
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -834,6 +836,10 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"WITH_METAL=1",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.mintfresh.CannonBall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
