@@ -11,7 +11,7 @@ CannonBall is written by Chris White ([Blog](http://reassembler.blogspot.co.uk/)
 Installation
 ---------------
 
-This port requires macOS 10.15
+This port requires macOS 12
 * Download the latest release from GitHub. 
 * Copy the CannonBall application off the .dmg into somewhere else.
 

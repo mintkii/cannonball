@@ -5,14 +5,15 @@
     See license.txt for more details.
 ***************************************************************************/
 
-#include <cstdlib>
 #include <cstring>
 #include <iostream>
+#include <unistd.h> // execv
 
 // SDL Library
 #include <SDL2/SDL.h>
 
 // SDL Specific Code
+#include "macos/platform.hpp"
 #include "sdl2/timer.hpp"
 #include "sdl2/input.hpp"
 
@@ -216,10 +217,7 @@ static void main_loop()
     fps_count.start();
 
     // General Frame Timing
-    // Only let V-Sync pace the game when the refresh rate matches the game's frame rate
-    SDL_DisplayMode mode;
-    bool vsync = config.video.vsync == 1 && video.supports_vsync() &&
-                 SDL_GetCurrentDisplayMode(0, &mode) == 0 && std::abs(mode.refresh_rate - config.fps) <= 1;
+    bool vsync = config.video.vsync == 1 && video.supports_vsync();
     Timer frame_time;
     int t;                              // Actual timing of tick in ms as measured by SDL (ms)
     double deltatime  = 0;              // Time we want an entire frame to take (ms)
@@ -300,8 +298,21 @@ int main(int argc, char* argv[])
 
     if (ok)
     {
+        platform::init();
         config.load(); // Load config.XML file
         ok = roms.load_revb_roms(config.sound.fix_samples);
+
+        if (!ok)
+        {
+			// Ask for another ROM folder and relaunch with it.
+            std::string folder = platform::ask_for_rom_folder(config.data.rom_path);
+            if (!folder.empty())
+            {
+                config.data.rom_dir = folder;
+                config.save();
+                execv(argv[0], argv);
+            }
+        }
     }
     if (!ok)
     {

@@ -64,6 +64,9 @@
 		2B88FB762BFB17CC001DBF22 /* res in Resources */ = {isa = PBXBuildFile; fileRef = 2B88FB6E2BFB136B001DBF22 /* res */; };
 		2B88FB992BFB1D98001DBF22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B88FB852BFB1D98001DBF22 /* Assets.xcassets */; };
 		2B9DAC642BFBCCDA000F7EC3 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9DAC5E2BFBCB36000F7EC3 /* CoreFoundation.framework */; };
+		2BC0FFEE0000000000000003 /* platform.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BC0FFEE0000000000000002 /* platform.mm */; };
+		2BC0FFEE000000000000000B /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9DAC622BFBCC22000F7EC3 /* AppKit.framework */; };
+		2BC0FFEE000000000000000E /* settings.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BC0FFEE000000000000000D /* settings.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -226,6 +229,10 @@
 		2B9DAC5E2BFBCB36000F7EC3 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		2B9DAC602BFBCB3F000F7EC3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		2B9DAC622BFBCC22000F7EC3 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		2BC0FFEE0000000000000001 /* platform.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = platform.hpp; sourceTree = "<group>"; };
+		2BC0FFEE0000000000000002 /* platform.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = platform.mm; sourceTree = "<group>"; };
+		2BC0FFEE000000000000000C /* settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = settings.h; sourceTree = "<group>"; };
+		2BC0FFEE000000000000000D /* settings.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = settings.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +244,7 @@
 				2B46D9AA2E0E1F3200F259EF /* QuartzCore.framework in Frameworks */,
 				2B46D9AC2E0E1F3A00F259EF /* Metal.framework in Frameworks */,
 				2B88FB682BFB10ED001DBF22 /* SDL2.framework in Frameworks */,
+				2BC0FFEE000000000000000B /* AppKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +446,7 @@
 				2B88FABC2BFB0A68001DBF22 /* frontend */,
 				2B88FAC32BFB0A68001DBF22 /* hwaudio */,
 				2B88FACA2BFB0A68001DBF22 /* hwvideo */,
+				2BC0FFEE0000000000000004 /* macos */,
 				2B88FAD92BFB0A68001DBF22 /* sdl2 */,
 				2B88FADA2BFB0A68001DBF22 /* globals.hpp */,
 				2B88FADB2BFB0A68001DBF22 /* main.cpp */,
@@ -514,6 +523,17 @@
 			path = ext;
 			sourceTree = "<group>";
 		};
+		2BC0FFEE0000000000000004 /* macos */ = {
+			isa = PBXGroup;
+			children = (
+				2BC0FFEE0000000000000001 /* platform.hpp */,
+				2BC0FFEE0000000000000002 /* platform.mm */,
+				2BC0FFEE000000000000000C /* settings.h */,
+				2BC0FFEE000000000000000D /* settings.mm */,
+			);
+			path = macos;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -542,7 +562,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 2600;
+				LastUpgradeCheck = 2710;
 				TargetAttributes = {
 					2B423FF42BFB09FB00DEA601 = {
 						CreatedOnToolsVersion = 15.4;
@@ -632,6 +652,8 @@
 				2B88FB392BFB0A68001DBF22 /* oroad.cpp in Sources */,
 				2B88FB332BFB0A68001DBF22 /* olevelobjs.cpp in Sources */,
 				2B1047082E1C7C6200EFF8D9 /* rendermtl.mm in Sources */,
+				2BC0FFEE0000000000000003 /* platform.mm in Sources */,
+				2BC0FFEE000000000000000E /* settings.mm in Sources */,
 				2B88FB492BFB0A68001DBF22 /* hwroad.cpp in Sources */,
 				2B88FB2E2BFB0A68001DBF22 /* oferrari.cpp in Sources */,
 				2B88FB472BFB0A68001DBF22 /* soundchip.cpp in Sources */,
@@ -770,32 +792,32 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 7;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_APP_SANDBOX = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",
 				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"WITH_METAL=1",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/**",
-					/opt/local/include,
+					/opt/homebrew/include,
 				);
+				INFOPLIST_FILE = ext/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMainNibFile = MainMenu;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					"WITH_METAL=1",
-				);
-				MARKETING_VERSION = 1.0;
+				MACOSX_DEPLOYMENT_TARGET = 12;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = org.mintfresh.CannonBall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -815,32 +837,32 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 7;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_APP_SANDBOX = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",
 				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"WITH_METAL=1",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/**",
-					/opt/local/include,
+					/opt/homebrew/include,
 				);
+				INFOPLIST_FILE = ext/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMainNibFile = MainMenu;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					"WITH_METAL=1",
-				);
-				MARKETING_VERSION = 1.0;
+				MACOSX_DEPLOYMENT_TARGET = 12;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = org.mintfresh.CannonBall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

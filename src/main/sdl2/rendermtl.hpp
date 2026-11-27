@@ -1,5 +1,5 @@
 //
-//  rendermetal.hpp
+//  rendermtl.hpp
 //  CannonBall
 //
 //  Created by Kii on 2025-05-13.
@@ -7,7 +7,6 @@
 #pragma once
 
 #include "renderbase.hpp"
-#include <SDL2/SDL.h>
 
 // Defined in rendermtl.mm
 struct MetalState;
@@ -15,27 +14,18 @@ struct MetalState;
 class Render : public RenderBase
 {
 public:
-    Render();
-    ~Render();
+    ~Render() override { disable(); }
     bool init(int src_width, int src_height,
               int scale,
               int video_mode,
-              int scanlines);
-    void disable();
-    bool start_frame();
-    bool finalize_frame();
-    void draw_frame(uint16_t* pixels);
-    bool supports_vsync();
+              int scanlines) override;
+    void disable() override;
+    bool start_frame() override    { return true; }
+    bool finalize_frame() override { return true; }
+    void draw_frame(uint16_t* pixels) override;
+    bool supports_vsync() override;
 
 private:
-    bool init_metal();
-    bool create_pipeline_state();
-    bool create_samplers();
-    bool create_textures();
-
-    SDL_Window*  window;
-    SDL_MetalView metal_view;
-    MetalState*  mtl;
-
-    float scanline_alpha;
+    SDL_Window* window = nullptr;
+    MetalState* mtl    = nullptr;
 };

@@ -23,8 +23,6 @@ public:
     void populate();
     void init(bool init_main_menu = true);
     void tick();
-    
-    void showAlert(const char* title, const char* message);
 
 private:
     CabDiag* cabdiag;
