@@ -7,11 +7,13 @@
 
 #include <cstring>
 #include <iostream>
+#include <unistd.h> // execv
 
 // SDL Library
 #include <SDL2/SDL.h>
 
 // SDL Specific Code
+#include "macos/platform.hpp"
 #include "sdl2/timer.hpp"
 #include "sdl2/input.hpp"
 
@@ -296,8 +298,21 @@ int main(int argc, char* argv[])
 
     if (ok)
     {
+        platform::init();
         config.load(); // Load config.XML file
         ok = roms.load_revb_roms(config.sound.fix_samples);
+
+        if (!ok)
+        {
+			// Ask for another ROM folder and relaunch with it.
+            std::string folder = platform::ask_for_rom_folder(config.data.rom_path);
+            if (!folder.empty())
+            {
+                config.data.rom_dir = folder;
+                config.save();
+                execv(argv[0], argv);
+            }
+        }
     }
     if (!ok)
     {

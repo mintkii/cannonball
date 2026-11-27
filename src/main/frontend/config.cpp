@@ -58,16 +58,9 @@ Config::Config(void)
     data.cfg_file = applicationSupportPath + "/config.xml";
     
     // ROM folder Setup
-    // TODO: this is done terribly.
-    // It only works once because of how it just is.
     try {
-        if (!std::filesystem::exists(applicationSupportPath + "/roms")) {
+        if (!std::filesystem::exists(applicationSupportPath + "/roms"))
             std::filesystem::copy(resourcePath + "/roms", applicationSupportPath + "/roms");
-            std::cout << "ROM folder doesn't exist. Defaults copied successfully. I will die now.\n";
-            Menu().showAlert("Missing Game Data", "Check CannonBall's Application Support directory, and verify all required ROM files are present.\n\nThe game will close now.");
-            exit(0);
-            
-        }
     } catch (std::filesystem::filesystem_error& e) {
         std::cout << "Error: " << e.what() << '\n';
     }
@@ -121,13 +114,19 @@ void Config::load()
     // ------------------------------------------------------------------------
     // Data Settings
     // ------------------------------------------------------------------------
-    // config.xml does not effect these paths yet.
-    // Eventually, I would like to let the user set these paths,
-    // but this will do for now.
-    data.rom_path         = applicationSupportPath + "/roms/";  // Path to ROMs
-    data.res_path         = resourcePath +  "/res/";            // Path to Resources
-    data.save_path        = applicationSupportPath + "/";       // Path to Save Data
+    data.rom_dir          = pt_config.get("data.rompath",  std::string(data.DEFAULT_ROM_DIR));
+    data.res_dir          = pt_config.get("data.respath",  std::string(data.DEFAULT_RES_DIR));
+    data.save_dir         = pt_config.get("data.savepath", std::string(data.DEFAULT_SAVE_DIR));
+    data.rom_path         = resolve_data_path(data.rom_dir,  applicationSupportPath); // Path to ROMs
+    data.res_path         = resolve_data_path(data.res_dir,  resourcePath);           // Path to Resources
+    data.save_path        = resolve_data_path(data.save_dir, applicationSupportPath); // Path to Save Data
     data.crc32            = pt_config.get("data.crc32", 1);
+
+    try {
+        std::filesystem::create_directories(data.save_path);
+    } catch (std::filesystem::filesystem_error& e) {
+        std::cout << "Error: " << e.what() << '\n';
+    }
 
     data.file_scores      = data.save_path + "hiscores.xml";
     data.file_scores_jap  = data.save_path + "hiscores_jap.xml";
@@ -306,6 +305,10 @@ void Config::load()
 bool Config::save()
 {
     // Save stuff
+    pt_config.put("data.rompath",             data.rom_dir);
+    pt_config.put("data.respath",             data.res_dir);
+    pt_config.put("data.savepath",            data.save_dir);
+
     pt_config.put("video.mode",               video.mode);
     pt_config.put("video.window.scale",       video.scale);
     pt_config.put("video.scanlines",          video.scanlines);
@@ -603,6 +606,23 @@ std::string getResourcePath() {
     CFRelease(resourcesURL);
     
     return std::string(path);
+}
+
+// relative paths helper
+std::string resolve_data_path(std::string path, const std::string& base) {
+    if (path.rfind("~/", 0) == 0) {
+        const char* homeDir = std::getenv("HOME");
+        path = std::string(homeDir ? homeDir : "") + path.substr(1);
+    }
+
+    std::filesystem::path p(path);
+    if (p.is_relative())
+        p = std::filesystem::path(base) / p;
+
+    std::string resolved = p.lexically_normal().string();
+    if (resolved.back() != '/')
+        resolved += '/';
+    return resolved;
 }
 
 std::string getApplicationSupportPath() {

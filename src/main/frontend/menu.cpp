@@ -1055,28 +1055,6 @@ void Menu::display_message(std::string s)
 }
 
 
-// TODO: probably can be done better
-// Show native system alert boxes.
-void Menu::showAlert(const char* title, const char* message) {
-    SDL_MessageBoxButtonData buttons[] = {
-        { SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT, 0, "OK" },
-    };
-
-    SDL_MessageBoxData messageboxdata = {
-        SDL_MESSAGEBOX_INFORMATION,
-        NULL, // no window
-        title,
-        message,
-        SDL_arraysize(buttons),
-        buttons,
-        NULL // no color scheme
-    };
-
-    int buttonid;
-    SDL_ShowMessageBox(&messageboxdata, &buttonid);
-}
-
-
 bool Menu::check_jap_roms()
 {
     if (config.engine.jap && !roms.load_japanese_roms())

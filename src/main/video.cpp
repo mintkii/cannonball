@@ -16,7 +16,9 @@
 #include "frontend/config.hpp"
 #include "engine/oroad.hpp"
 
-#ifdef WITH_OPENGL
+#ifdef WITH_METAL
+#include "sdl2/rendermtl.hpp"
+#elif WITH_OPENGL
 #include "sdl2/rendergl.hpp"
 #elif WITH_OPENGLES
 #include "sdl2/rendergles.hpp"

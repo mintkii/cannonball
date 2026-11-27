@@ -17,6 +17,13 @@
 
 struct data_settings_t
 {
+    std::string rom_dir;
+    std::string res_dir;
+    std::string save_dir;
+    static constexpr const char* DEFAULT_ROM_DIR  = "roms/";
+    static constexpr const char* DEFAULT_RES_DIR  = "./res/";
+    static constexpr const char* DEFAULT_SAVE_DIR = "./";
+
     std::string rom_path;
     std::string res_path;
     std::string save_path;
@@ -195,5 +202,9 @@ private:
 // macOS function declerations
 std::string getResourcePath();
 std::string getApplicationSupportPath();
+std::string resolve_data_path(std::string path, const std::string& base);
+
+extern std::string resourcePath;
+extern std::string applicationSupportPath;
 
 extern Config config;

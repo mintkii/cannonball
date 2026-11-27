@@ -3,10 +3,7 @@
 <!-- 
     External Data Required
     
-    Note: These are unused for the macOS version.
-    ROMS should be placed in the 'roms' directory inside the application bundle.
-    RES is located inside .app/Contents/Resources/res/
-    SAVE is located inside CannonBall's Application Support directory. (~/Library/Application Support/CannonBall)
+    These can also be changed from CannonBall > Settings.
 -->
 <data>
     <!-- OutRun Revision B ROM directory -->
